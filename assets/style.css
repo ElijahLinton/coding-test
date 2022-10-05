@@ -1,9 +1,17 @@
 *{
+    font-family:silkscreen;
     margin:0;
     padding: 0;
 }
-
-body{background-color: black;}
+@font-face{
+    font-family:silkscreen;
+    src: url("Silkscreen-Regular.ttf")
+}
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
 
 header{
     width: 85%;
@@ -12,9 +20,16 @@ header{
     text-align: center;
     background-color: rgb(21, 255, 0);
     margin-bottom: 50px;
+    box-shadow: 
+    0 0 20px 5px rgb(255, 255, 255),
+    0 0 30px 5px rgb(0, 255, 13), 
+    0 0 40px 20px rgb(25, 211, 0);
+    width:60em ;
 }
 
 #question{
+    padding: 30px;
+    text-align: center;
     border-radius: 10px;
     margin-left:auto;
     margin-right:auto;
@@ -29,6 +44,8 @@ header{
 }
 
 #answers{
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
     padding: 30px;
     justify-content: space-around;
@@ -44,4 +61,26 @@ header{
     0 0 40px 20px rgb(255, 255, 255),
     0 0 50px 20px rgb(0, 255, 13), 
     0 0 70px 50px rgb(25, 211, 0);
+}
+ 
+#start{
+    border:none;
+    background-color: aquamarine;
+    width: 110px;
+}
+
+footer{
+    text-align: center;
+    width: 85%;
+    background-color: rgb(101, 202, 0);
+    margin-right: auto;
+    margin-left:auto ;
+    width:60em ;
+    margin-top: 100px;
+}
+
+#start:hover{
+    background-color: rgb(99, 236, 191);
+    border:2px solid green;
+    width:90;
 }
