@@ -3,12 +3,15 @@ var countDown = 72
 
 
 timeCount.addEventListener("click",function startTheGame(){
-    setInterval(function(){
+    var quizBegan = setInterval(function(){
         countDown--;
 
         document.getElementById("timer").innerHTML = countDown;
-        
+
+        if(countDown===0){
+    clearInterval(quizBegan);}
+    
 }, 1000,);
-    if(countDown <= 0){
-    return(timeCount)};
+
 },{once:true})
+
