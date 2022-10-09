@@ -14,6 +14,7 @@ body{
 }
 
 header{
+    justify-content: space-around;
     width: 85%;
     margin-left:auto;
     margin-right:auto;
@@ -86,19 +87,23 @@ footer{
 #start:hover{
     background-color: rgb(99, 236, 191);
     border:2px solid green;
-    width:40px;
+    width:60px;
+    height: 30px;
     font-size: x-small;
 }
-#submit-btn{
-    
-    border:none;
-    background-color: aquamarine;
-    width: 110px;
-    margin-left:auto;
-    margin-right: auto;}
 
-  #sumbit-btn:hover{
+#next-btn{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+    background-color: rgb(86, 250, 195);
+    width: 110px;}
+
+#next-btn:hover{
     background-color: rgb(99, 236, 191);
-    border:2px solid green;    
-    width:75px;        
-    }  
+    border:2px solid green;
+    width:60px;
+    height: 30px;
+    font-size: x-small;
+}

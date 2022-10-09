@@ -5,54 +5,59 @@ var corrects = document.getElementById("correct")
 var incorrects = document.getElementById("incorrect")
 var correctAnswer = 0;
 var incorrectanswer = 0;
-let questionBox = document.getElementsByClassName('question')
-
+var questionRandom = document.getElementById('random-questions')
+const optionButtonsEl = document.getElementById('option-Button')
+const nextButton = document.getElementById('next-btn')
 let questionAmount, questionIndex 
- const sumbitBtn = document.getElementById('submit-btn')
  
-questionHolder = $()
+ 
 const questions = [
     {
         question:"what programming language is use to build basic elements of a webpage?",
-        option1:"Python",
-        option2:"html",
-        option3:"stylesheet",
-        option4:"javascript",
-        rightAnswer:1
+        options: [
+        {text:"Python"},
+        {text:"html", answer:true},
+        {text:"stylesheet"},
+        {text:"javascript"}
+        ]
     },
 
     {
         question:"what is one way you can make your webpage fit phones and tablets",
-        option1:"background-size",
-        option2:"align-items",
-        option3:"media-queries",
-        option4:"font-family",
-        rightAnswer:1
+        options: [
+            {text:"background-size"},
+            {text:"align-items"},
+            {text:"media-queries", answer:true},
+            {text:"font-family"}
+        ]
     },
 
     {
         question:"what are one of javascript keywords that can be declared ONCE but not again.",
-        option1:"var",
-        option2:"boolean",
-        option3:"let",
-        option4:"string",
-        rightAnswer:2
+        options: [
+            {text:"var"},
+            {text:"boolean"},
+            {text:"const", answer:true},
+            {text:"string"}
+    ]
+        
     },
         
     {
         question:"what is an element inside another element is called",
-        option1:"<p>",
-        option2:"viewport",
-        option3:"local storage",
-        option4:"children",
-        rightAnswer:4
+        options: [
+            {text:"<p>"},
+            {text:"viewport",},
+            {text:"local storage"},
+            {text:"children", answer:true}
+        ]
     },
 ]
 
 timeCount.addEventListener("click",function startTheGame(){
     
-     questionAmount = questions.sort(() => Math.random() - .5)
-    questionIndex = 0
+     questionAmount = questions.sort(() => Math.random() - .4)
+     questionIndex = 0
 
     var quizBegan = setInterval(function(){
         countDown--;
@@ -60,7 +65,10 @@ timeCount.addEventListener("click",function startTheGame(){
         document.getElementById("timer").innerHTML = countDown;
 
 if(countDown===0){
-    clearInterval(quizBegan);}
+    clearInterval(quizBegan);
+    window.prompt("all questions have been answered would you live to save your score?")
+    $('#next-btn').hide()
+    $('.optionbtn').hide()}
     
 }, 1000,);
 
@@ -69,10 +77,62 @@ if(countDown===0){
 displayEachQuestion()
 },{once:true})
 
+nextButton.addEventListener("click", () =>{
+    questionIndex++
+    displayEachQuestion()
+})
 // used to have only one selected answer
 function displayEachQuestion() {
- setQuestion(questionAmount[questionIndex])
+    defaultStructure()
+    revealOption(questionAmount[questionIndex])
 }
+
+
 function revealOption(question) {
- questionBox.innerText = question.question
+    questionRandom.innerText = question.question
+    question.options.forEach(options =>{
+        const button = document.createElement('button')
+        button.innerText = options.text
+        button.classList.add('optionbtn')
+        if (options.answer){
+            button.dataset.answer = options.answer
+        }
+        button.addEventListener('click', optionSelected)
+        optionButtonsEl.appendChild(button)
+    })
 }
+
+function defaultStructure(){
+    while (optionButtonsEl.firstChild){
+        $('#next-btn').hide()
+        optionButtonsEl.removeChild(optionButtonsEl.firstChild)
+    }
+}
+
+function optionSelected(e){
+const buttonOfchoice = (e).target
+ answer = buttonOfchoice.dataset.answer
+for (let i = 0; i < questions.length; i++){
+     if(answer) {
+        correctAnswer++;
+        corrects.innerHTML = correctAnswer
+    } else if(!answer){incorrectanswer++;
+        incorrects.innerHTML = incorrectanswer
+    }
+    $('.optionbtn').hide()
+}
+if (questionAmount.length > questionIndex + 1){
+    $('#next-btn').show()
+}else{
+    window.prompt("all questions have been answered would you like to save your score?")
+    
+}
+
+
+}
+
+
+    
+   
+
+

@@ -14,23 +14,28 @@
             <h1>The Coding test</h1>
             <p id="timer">Time:</p>
             <button id ="start">Start Quiz</button>
+            <button id="next-btn" hidden >next</button>
         </header>
     
         <section>
              <div class="question">
-                <h2>questions</h2>
-
-
-               <button id="submit-btn">Submit</button>
+                <h2 id="random-questions">questions</h2>
+                <div id="option-Button">
+                    <button class="optionbtn">Option1</button>
+                    <button class="optionbtn">Option2</button>
+                    <button class="optionbtn">Option3</button>
+                    <button class="optionbtn">Option4</button>
+                    
+                </div>
             </div>
         </section>
 
         <section>
             <div id ="answers">
                 <h2>answers</h2>
-                <h3>correct:</h3>
+                <h3>correct points:</h3>
                 <P id ="correct"></P>
-                <h3 id ="incorrect">incorrect:</h3>
+                <h3>incorrect points:</h3>
                 <P id ="incorrect"></P>
             </div>
         </section>
