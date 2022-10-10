@@ -22,7 +22,7 @@ when you go on to the webpage  you will notice 4 sections of content. The header
 [this is a screenshot of the pages depiction to get a tad familiar with it](./assets/codingQuizScreenshot.PNG)
 
 ## Link
-[the following link will lead to the actually webpage for the user to take a look for themselves]()
+[the following link will lead to the actually webpage for the user to take a look for themselves](https://elijahlinton.github.io/coding-test/)
 ## Credits
 
 N/A
