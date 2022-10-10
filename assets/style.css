@@ -1,17 +1,27 @@
+/*using the downloaded font to use on all of the text*/
 *{
     font-family:silkscreen;
     margin:0;
     padding: 0;
 }
+
+
+/*downloaded the font to make the quiz look like a video game to a degree*/
 @font-face{
     font-family:silkscreen;
     src: url("Silkscreen-Regular.ttf")
 }
+
+
+
+/*gave the body a black color to allow the sections to have a bright neon effect*/
 body{
     display: flex;
     flex-direction: column;
     background-color: black;
 }
+
+
 
 header{
     justify-content: space-around;
@@ -25,8 +35,9 @@ header{
     0 0 20px 5px rgb(255, 255, 255),
     0 0 30px 5px rgb(0, 255, 13), 
     0 0 40px 20px rgb(25, 211, 0);
-    width:60em ;
 }
+
+
 
 .question{
     justify-content: space-around;
@@ -46,6 +57,7 @@ header{
     0 0 50px 20px rgb(0, 255, 13), 
     0 0 70px 50px rgb(25, 211, 0);
 }
+
 
 
 #answers{
@@ -68,11 +80,26 @@ header{
     0 0 70px 50px rgb(25, 211, 0);
 }
  
+
+
 #start{
     border:none;
     background-color: aquamarine;
     width: 110px;
 }
+
+
+/*hover effect allows the button to give a press motion*/
+#start:hover{
+    background-color: rgb(99, 236, 191);
+    border:2px solid green;
+    width:60px;
+    height: 30px;
+    font-size: x-small;
+    cursor:pointer;
+}
+
+
 
 footer{
     text-align: center;
@@ -84,13 +111,7 @@ footer{
     margin-top: 100px;
 }
 
-#start:hover{
-    background-color: rgb(99, 236, 191);
-    border:2px solid green;
-    width:60px;
-    height: 30px;
-    font-size: x-small;
-}
+
 
 #next-btn{
     margin-top: 10px;
@@ -98,17 +119,52 @@ footer{
     margin-right: auto;
     border:none;
     background-color: rgb(86, 250, 195);
-    width: 110px;}
+    width: 110px;
+    cursor:pointer;}
 
+
+/*given every button a cruser pointer to signify that the user can press them*/
 #next-btn:hover{
     background-color: rgb(99, 236, 191);
     border:2px solid green;
     width:60px;
     height: 30px;
     font-size: x-small;
+    cursor:pointer;
 }
-#optionbtn{
+
+
+#option-Button{
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
+    ;
+}
+
+
+
+.optionbtn{margin: 10px;
+    background-color: rgb(99, 236, 191);
+    border:2px solid green;
+    margin-left: auto;
+    margin-right: auto;
+    cursor:pointer;
+}
+
+
+
+.optionbtn:hover{
+    background-color: rgb(99, 236, 191);
+    border:2px solid green;
+    height: 30px;
+    font-size: x-small;
+    cursor:pointer;}
+
+
+/*didnt want to forget making the webpages accessible to other devices besideds a desktop or laptop*/
+@media screen and (max-width:500px ){
+    *{width: 85% !important;}
+    #random-questions{font-size: 1.1em;}
+    h3{font-size: 1em;}
+    h1{font-size: 1.5em;}
+    .optionbtn{font-size: x-small;}
 }

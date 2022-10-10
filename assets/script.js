@@ -1,4 +1,4 @@
-//variables for the basic structure of the quiz
+//variables for the seconds the quiz last elements of the webpage and points
 var timeCount = document.getElementById("start")
 var countDown = 72
 var corrects = document.getElementById("correct")
@@ -55,35 +55,39 @@ const questions = [
 ]
 //event listener used to activate the game the moment the "start quiz" button is completed
 timeCount.addEventListener("click",function startTheGame(){
-    
+    //Math random to display every random question everytime the user takes the quiz
      questionAmount = questions.sort(() => Math.random() - .4)
      questionIndex = 0
-
+    //quizBegan starts the quiz and timer as soons as the user clicks the "start quiz button"
     var quizBegan = setInterval(function(){
         countDown--;
-
+    //displaying the amount of time the user has until the game ends
         document.getElementById("timer").innerHTML = countDown;
-
-if(countDown===0){
-    clearInterval(quizBegan);
-    window.prompt("all questions have been answered would you live to save your score?")
-    $('#next-btn').hide()
-    $('.optionbtn').hide()
-    storeCorrect()
-    storeIncorrect()
-    location.reload()}
-    
+    //after the countdown happends all options and next buttons are hidden your score is save and you name in the prompt window
+    if(countDown===0){
+        clearInterval(quizBegan);
+        window.prompt("all questions have been answered would you live to save your score?")
+        $('#next-btn').hide()
+        $('.optionbtn').hide()
+        storeCorrect()
+        storeIncorrect()
+        location.reload()}
+    //every 1000 milliseconds the timer will deduct the numbers in countDown so in total the user has 72 seconds to complete the quiz
 }, 1000,);
 
 
 
-displayEachQuestion()
+    displayEachQuestion()
+    //the event listener can only be called once to prevent any bugs or acceleration of the time
 },{once:true})
 
 nextButton.addEventListener("click", () =>{
     questionIndex++
     displayEachQuestion()
 })
+
+
+
 // used to have only one selected answer
 function displayEachQuestion() {
     defaultStructure()
@@ -91,6 +95,7 @@ function displayEachQuestion() {
 }
 
 
+//function used to show the options of the question in button form
 function revealOption(question) {
     questionRandom.innerText = question.question
     question.options.forEach(options =>{
@@ -104,19 +109,21 @@ function revealOption(question) {
         optionButtonsEl.appendChild(button)
     })
 }
-
+// after a question is answered it will hide the next button until the user selects the answer again
 function defaultStructure(){
     while (optionButtonsEl.firstChild){
         $('#next-btn').hide()
         optionButtonsEl.removeChild(optionButtonsEl.firstChild)
     }
 }
-
+//function option selected will allow the user to click on the option of his choice but afterwards
+//all the options will disappear to prevent the userr for selecting the other option
 function optionSelected(e){
-const buttonOfchoice = (e).target
- answer = buttonOfchoice.dataset.answer
-for (let i = 0; i < questions.length; i++){
-     if(answer) {
+    const buttonOfchoice = (e).target
+    answer = buttonOfchoice.dataset.answer
+    //the loop allows the webpage to sum up the amount of correct and incorrect answers the user will have 
+    for (let i = 0; i < questions.length; i++){
+        if(answer) {
         correctAnswer++;
         corrects.innerHTML = correctAnswer
         
@@ -125,6 +132,10 @@ for (let i = 0; i < questions.length; i++){
     }
     $('.optionbtn').hide()
 }
+
+
+//if else statement will check if there is any other question left if not it will allow 
+//the user to save their points and their initials 
 if (questionAmount.length > questionIndex + 1){
     $('#next-btn').show()
 }else{
@@ -139,12 +150,13 @@ if (questionAmount.length > questionIndex + 1){
 
 
 }
-
+//storeCorrect automatically saves the users score into the local storage
 function storeCorrect(){
     corrects.textContent = correctAnswer
     localStorage.setItem('correct points', correctAnswer);
 }
-    
+//storeIncorrect does the same thing storeCorrect does but it saves the incorrect points 
+//both will be automatically saved once the user finishes 
 function storeIncorrect(){
     incorrects.textContent = incorrectAnswer
     localStorage.setItem('incorrect points', incorrectAnswer);
