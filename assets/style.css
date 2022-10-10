@@ -107,3 +107,8 @@ footer{
     height: 30px;
     font-size: x-small;
 }
+#optionbtn{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}

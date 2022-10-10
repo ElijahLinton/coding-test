@@ -4,13 +4,13 @@ var countDown = 72
 var corrects = document.getElementById("correct")
 var incorrects = document.getElementById("incorrect")
 var correctAnswer = 0;
-var incorrectanswer = 0;
+var incorrectAnswer = 0;
 var questionRandom = document.getElementById('random-questions')
 const optionButtonsEl = document.getElementById('option-Button')
 const nextButton = document.getElementById('next-btn')
 let questionAmount, questionIndex 
  
- 
+ //an object of questions that are to be selected one of the text are correct
 const questions = [
     {
         question:"what programming language is use to build basic elements of a webpage?",
@@ -53,7 +53,7 @@ const questions = [
         ]
     },
 ]
-
+//event listener used to activate the game the moment the "start quiz" button is completed
 timeCount.addEventListener("click",function startTheGame(){
     
      questionAmount = questions.sort(() => Math.random() - .4)
@@ -68,7 +68,10 @@ if(countDown===0){
     clearInterval(quizBegan);
     window.prompt("all questions have been answered would you live to save your score?")
     $('#next-btn').hide()
-    $('.optionbtn').hide()}
+    $('.optionbtn').hide()
+    storeCorrect()
+    storeIncorrect()
+    location.reload()}
     
 }, 1000,);
 
@@ -116,23 +119,35 @@ for (let i = 0; i < questions.length; i++){
      if(answer) {
         correctAnswer++;
         corrects.innerHTML = correctAnswer
-    } else if(!answer){incorrectanswer++;
-        incorrects.innerHTML = incorrectanswer
+        
+    } else if(!answer){incorrectAnswer++;
+        incorrects.innerHTML = incorrectAnswer
     }
     $('.optionbtn').hide()
 }
 if (questionAmount.length > questionIndex + 1){
     $('#next-btn').show()
 }else{
-    window.prompt("all questions have been answered would you like to save your score?")
+    var userInitials = localStorage.getItem('userInitials') 
+     userInitials = prompt("all questions have been answered would you like to save your name and score?")
+    localStorage.setItem('userScore&Initials',userInitials)
+    storeCorrect()
+    storeIncorrect()
+    location.reload()
     
 }
 
 
 }
 
-
+function storeCorrect(){
+    corrects.textContent = correctAnswer
+    localStorage.setItem('correct points', correctAnswer);
+}
     
-   
+function storeIncorrect(){
+    incorrects.textContent = incorrectAnswer
+    localStorage.setItem('incorrect points', incorrectAnswer);
+}
 
 
